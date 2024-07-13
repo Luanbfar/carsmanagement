@@ -22,19 +22,30 @@ public class CarService {
     }
 
     public List<Car> findAllCars() {
-        return carRepo.findAll();
+        List<Car> cars = carRepo.findAll();
+        if (cars.isEmpty()) {
+            throw new CarNotFoundException("Car not found");
+        } else {
+            return cars;
+        }
     }
 
     public Car findCarById(Long id) {
-        return carRepo.findCarById(id).orElseThrow(() -> new CarNotFoundException("Car by id" + id + "was not found"));
+        return carRepo.findCarById(id).orElseThrow(() -> new CarNotFoundException("Car not found"));
     }
 
     public Car updateCar(Car car) {
         return carRepo.save(car);
     }
 
-    public void deleteCarById(Long id) {
-        carRepo.deleteCarById(id);
+    public void decrementCarAmount(Car car) {
+        if (car.getAmount() > 0) {
+            car.setAmount(car.getAmount() - 1);
+        }
+        carRepo.save(car);
     }
 
+    public void deleteCarById(Long id) {
+        carRepo.deleteById(id);
+    }
 }
