@@ -31,18 +31,30 @@ public class CarService {
     }
 
     public Car findCarById(Long id) {
-        return carRepo.findCarById(id).orElseThrow(() -> new CarNotFoundException("Car not found"));
-    }
-
-    public Car updateCar(Car car) {
-        return carRepo.save(car);
-    }
-
-    public void decrementCarAmount(Car car) {
-        if (car.getAmount() > 0) {
-            car.setAmount(car.getAmount() - 1);
+        if (carRepo.existsById(id)) {
+            return carRepo.findCarById(id);
         }
-        carRepo.save(car);
+        else {
+            throw new CarNotFoundException("Car not found");
+        }
+    }
+
+    public Car updateCar(Car currentCar, Car updatedCar) {
+        if (currentCar != null && updatedCar != null) {
+            currentCar.setAmount(updatedCar.getAmount());
+            currentCar.setColor(updatedCar.getColor());
+            currentCar.setDescription(updatedCar.getDescription());
+            currentCar.setPrice(updatedCar.getPrice());
+            currentCar.setYear(updatedCar.getYear());
+        }
+        return carRepo.save(currentCar);
+    }
+
+    public void decrementCarAmount(Car currentCar) {
+        if (currentCar.getAmount() > 0) {
+            currentCar.setAmount(currentCar.getAmount() - 1);
+        }
+        carRepo.save(currentCar);
     }
 
     public void deleteCarById(Long id) {

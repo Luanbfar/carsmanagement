@@ -66,14 +66,7 @@ public class CarResource {
         ResponseEntity<Car> response;
         try {
             Car existingCar = carService.findCarById(id);
-            if (existingCar != null) {
-                existingCar.setAmount(updatedCar.getAmount());
-                existingCar.setColor(updatedCar.getColor());
-                existingCar.setDescription(updatedCar.getDescription());
-                existingCar.setPrice(updatedCar.getPrice());
-                existingCar.setYear(updatedCar.getYear());
-            }
-            Car updatedCarResult = carService.updateCar(existingCar);
+            Car updatedCarResult = carService.updateCar(existingCar, updatedCar);
             response = new ResponseEntity<>(updatedCarResult, HttpStatus.OK);
         } catch (CarNotFoundException e) {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
