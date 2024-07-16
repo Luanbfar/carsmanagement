@@ -40,6 +40,7 @@ public class CarService {
     }
 
     public Car updateCar(Car currentCar, Car updatedCar) {
+        Car result = null;
         if (currentCar != null && updatedCar != null) {
             currentCar.setManufacturer(updatedCar.getManufacturer());
             currentCar.setModel(updatedCar.getModel());
@@ -50,7 +51,10 @@ public class CarService {
             currentCar.setYear(updatedCar.getYear());
             currentCar.setImageURL(updatedCar.getImageURL());
         }
-        return carRepo.save(currentCar);
+        if (currentCar != null) {
+            result = carRepo.save(currentCar);
+        }
+        return result;
     }
 
     public void decrementCarAmount(Car currentCar) {
