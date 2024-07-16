@@ -41,11 +41,14 @@ public class CarService {
 
     public Car updateCar(Car currentCar, Car updatedCar) {
         if (currentCar != null && updatedCar != null) {
+            currentCar.setManufacturer(updatedCar.getManufacturer());
+            currentCar.setModel(updatedCar.getModel());
             currentCar.setAmount(updatedCar.getAmount());
             currentCar.setColor(updatedCar.getColor());
             currentCar.setDescription(updatedCar.getDescription());
             currentCar.setPrice(updatedCar.getPrice());
             currentCar.setYear(updatedCar.getYear());
+            currentCar.setImageURL(updatedCar.getImageURL());
         }
         return carRepo.save(currentCar);
     }

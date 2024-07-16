@@ -18,6 +18,7 @@ public class CarResource {
         this.carService = carService;
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping
     public ResponseEntity<List<Car>> getAllCars() {
         ResponseEntity<List<Car>> response;
