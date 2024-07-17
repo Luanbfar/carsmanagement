@@ -42,14 +42,30 @@ public class CarService {
     public Car updateCar(Car currentCar, Car updatedCar) {
         Car result = null;
         if (currentCar != null && updatedCar != null) {
-            currentCar.setManufacturer(updatedCar.getManufacturer());
-            currentCar.setModel(updatedCar.getModel());
-            currentCar.setAmount(updatedCar.getAmount());
-            currentCar.setColor(updatedCar.getColor());
-            currentCar.setDescription(updatedCar.getDescription());
-            currentCar.setPrice(updatedCar.getPrice());
-            currentCar.setYear(updatedCar.getYear());
-            currentCar.setImageURL(updatedCar.getImageURL());
+            if (updatedCar.getManufacturer() != null) {
+                currentCar.setManufacturer(updatedCar.getManufacturer());
+            }
+            if (updatedCar.getModel() != null) {
+                currentCar.setModel(updatedCar.getModel());
+            }
+            if (updatedCar.getColor() != null) {
+                currentCar.setColor(updatedCar.getColor());
+            }
+            if (updatedCar.getAmount() != 0.0) {
+                currentCar.setAmount(updatedCar.getAmount());
+            }
+            if (updatedCar.getPrice() != 0.0) {
+                currentCar.setPrice(updatedCar.getPrice());
+            }
+            if (updatedCar.getDescription() != null) {
+                currentCar.setDescription(updatedCar.getDescription());
+            }
+            if (updatedCar.getYear() != 0) {
+                currentCar.setYear(updatedCar.getYear());
+            }
+            if (updatedCar.getImageURL() != null) {
+                currentCar.setImageURL(updatedCar.getImageURL());
+            }
         }
         if (currentCar != null) {
             result = carRepo.save(currentCar);
