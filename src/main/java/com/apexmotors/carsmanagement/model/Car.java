@@ -12,14 +12,14 @@ public class Car implements Serializable {
     private Long id;
     private String manufacturer;
     private String model;
-    private int year;
-    private double price;
-    private int amount;
+    private Integer year;
+    private Double price;
+    private Integer amount;
     private String color;
     private String description;
     private String imageURL;
 
-    public Car(String manufacturer, String model, int year, double price, int amount, String color, String description, String imageURL) {
+    public Car(String manufacturer, String model, Integer year, Double price, Integer amount, String color, String description, String imageURL) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.year = year;
@@ -58,27 +58,27 @@ public class Car implements Serializable {
         this.model = model;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

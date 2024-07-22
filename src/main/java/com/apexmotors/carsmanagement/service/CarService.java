@@ -42,28 +42,28 @@ public class CarService {
     public Car updateCar(Car currentCar, Car updatedCar) {
         Car result = null;
         if (currentCar != null && updatedCar != null) {
-            if (updatedCar.getManufacturer() != null) {
+            if (validateAttribute(updatedCar.getManufacturer())) {
                 currentCar.setManufacturer(updatedCar.getManufacturer());
             }
-            if (updatedCar.getModel() != null) {
+            if (validateAttribute(updatedCar.getModel())) {
                 currentCar.setModel(updatedCar.getModel());
             }
-            if (updatedCar.getColor() != null) {
+            if (validateAttribute(updatedCar.getColor())) {
                 currentCar.setColor(updatedCar.getColor());
             }
-            if (updatedCar.getAmount() != 0.0) {
+            if (validateAttribute(updatedCar.getAmount())) {
                 currentCar.setAmount(updatedCar.getAmount());
             }
-            if (updatedCar.getPrice() != 0.0) {
+            if (validateAttribute(updatedCar.getPrice())) {
                 currentCar.setPrice(updatedCar.getPrice());
             }
-            if (updatedCar.getDescription() != null) {
+            if (validateAttribute(updatedCar.getDescription())) {
                 currentCar.setDescription(updatedCar.getDescription());
             }
-            if (updatedCar.getYear() != 0) {
+            if (validateAttribute(updatedCar.getYear())) {
                 currentCar.setYear(updatedCar.getYear());
             }
-            if (updatedCar.getImageURL() != null) {
+            if (validateAttribute(updatedCar.getImageURL())) {
                 currentCar.setImageURL(updatedCar.getImageURL());
             }
         }
@@ -82,5 +82,16 @@ public class CarService {
 
     public void deleteCarById(Long id) {
         carRepo.deleteById(id);
+    }
+
+    public Boolean validateAttribute(String attribute) {
+        return attribute != null && !attribute.isEmpty();
+    }
+
+    public Boolean validateAttribute(Double attribute) {
+        return attribute != null;
+    }
+    public Boolean validateAttribute(Integer attribute) {
+        return attribute != null;
     }
 }

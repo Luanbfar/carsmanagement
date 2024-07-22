@@ -18,7 +18,7 @@ public class CarResource {
         this.carService = carService;
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public ResponseEntity<List<Car>> getAllCars() {
         ResponseEntity<List<Car>> response;
@@ -73,6 +73,7 @@ public class CarResource {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println(e.getMessage());
         }
         return response;
     }
